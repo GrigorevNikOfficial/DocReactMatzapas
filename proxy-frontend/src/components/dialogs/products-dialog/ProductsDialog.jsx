@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React, { useEffect, useState } from "react";
-import MaterialService from "../../../api/services/product-service";
+import ProductService from "../../../api/services/product-service";
 
 export const ProductsDialog = ({
     visible,
@@ -23,11 +23,11 @@ export const ProductsDialog = ({
     const onOkHandler = async () => {
         const record =
             currentRecord
-                ? await MaterialService.updateRecord({
+                ? await ProductService.updateRecord({
                     id: currentRecord.id,
                     title,
                 })
-                : await MaterialService.createRecord({ title })
+                : await ProductService.createRecord({ title })
         onOk(record);
     }
 

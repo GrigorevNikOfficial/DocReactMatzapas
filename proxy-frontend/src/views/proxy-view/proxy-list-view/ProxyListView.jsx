@@ -2,9 +2,9 @@ import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
-import CompanyService from "../../../api/services/organization-service";
-import MatzapasHeaderService from "../../../api/services/proxy-header-service";
-import DirectorService from "../../../api/services/individuals-service";
+import OrganizationService from "../../../api/services/organization-service";
+import ProxyHeadersService from "../../../api/services/proxy-header-service";
+import IndividualService from "../../../api/services/individuals-service";
 import { ProxyHeadersDialog } from "../../../components/dialogs/proxy-headers-dialog/ProxyHeadersDialog";
 import dayjs from 'dayjs';
 
@@ -73,9 +73,9 @@ export const ProxyListView = ({
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const individuals = await DirectorService.getAllRecords();
-          const organizations = await CompanyService.getAllRecords();
-          const list = await MatzapasHeaderService.getAllRecords();   //CAS   
+          const individuals = await IndividualService.getAllRecords();
+          const organizations = await OrganizationService.getAllRecords();
+          const list = await ProxyHeadersService.getAllRecords();   //CAS   
           setIndividuals(individuals);
           setOrganizations(organizations);
           setList(list);
@@ -99,7 +99,7 @@ export const ProxyListView = ({
     }
 
     const deleteRecordHandler = async (recordId) => {
-        await MatzapasHeaderService.removeRecord(recordId);
+        await ProxyHeadersService.removeRecord(recordId);
         setList(list.filter(it => it.id !== recordId));
     }
 

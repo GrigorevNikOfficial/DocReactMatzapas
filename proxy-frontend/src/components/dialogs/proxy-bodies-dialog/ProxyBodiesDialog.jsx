@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 
 import { Select } from 'antd'; 
 
-import MatzapasBodyService from "../../../api/services/proxy-body-service"; 
+import ProxyBodyService from "../../../api/services/proxy-body-service"; 
 
  
 
@@ -39,11 +39,11 @@ export const ProxyBodiesDialog = ({
  const onOkHandler = async () => { 
   const record = 
    currentRecord 
-    ? await MatzapasBodyService.updateRecord({ 
+    ? await ProxyBodyService.updateRecord({ 
      id: currentRecord.id, 
      ...proxyBody, 
     }) 
-    : await MatzapasBodyService.createRecord({...proxyBody, proxyHeaderId}) 
+    : await ProxyBodyService.createRecord({...proxyBody, proxyHeaderId}) 
   onOk(record); 
  } 
 

@@ -2,7 +2,7 @@ import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { ProductsDialog } from "../../components/dialogs/products-dialog/ProductsDialog";
-import DirectorService from "../../api/services/individuals-service";
+import IndividualService from "../../api/services/individuals-service";
 import { IndividualsDialog } from "../../components/dialogs/individuals-dialog/IndividualsDialog";
 
 export const IndividualsView = ({
@@ -68,7 +68,7 @@ export const IndividualsView = ({
 
     useEffect(() => {
       const fetchData = async () => {
-          const list = await DirectorService.getAllRecords();
+          const list = await IndividualService.getAllRecords();
           setList(list);
       };
   
@@ -85,7 +85,7 @@ export const IndividualsView = ({
     }
 
     const deleteRecordHandler = async (recordId) => {
-        await DirectorService.removeRecord(recordId);
+        await IndividualService.removeRecord(recordId);
         setList(list.filter(it => it.id !== recordId));
     }
 

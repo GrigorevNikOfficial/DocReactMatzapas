@@ -4,7 +4,7 @@ import Modal from "antd/lib/modal/Modal";
 
 import React, { useEffect, useState } from "react"; 
 
-import MatzapasHeaderService from "../../../api/services/proxy-header-service"; 
+import ProxyHeadersService from "../../../api/services/proxy-header-service"; 
 
 import dayjs from 'dayjs';
 
@@ -39,11 +39,11 @@ export const ProxyHeadersDialog = ({
  const onOkHandler = async () => { 
   const record = 
    currentRecord 
-    ? await MatzapasHeaderService.updateRecord({ 
+    ? await ProxyHeadersService.updateRecord({ 
      id: currentRecord.id, 
      ...proxyHeader, 
     }) 
-    : await MatzapasHeaderService.createRecord(proxyHeader) 
+    : await ProxyHeadersService.createRecord(proxyHeader) 
   onOk(record); 
  } 
 

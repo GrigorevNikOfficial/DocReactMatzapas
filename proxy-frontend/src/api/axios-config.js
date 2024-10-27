@@ -1,6 +1,8 @@
-import axios from "axios"; 
-
-export const instanceAxios = axios.create({ 
-  baseURL: 'http://localhost:8080/', 
-}); 
  
+ import axios from "axios"; 
+
+ 
+ export const instanceAxios = axios.create({ 
+   baseURL: 'http://localhost:8080/', 
+ }); 
+  

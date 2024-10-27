@@ -1,11 +1,11 @@
 import { instanceAxios } from "../axios-config";
 
-export default class CompanyService {
+export default class ProxyBodyService {
 
-    static apiUrl = '/api/companies';
+    static apiUrl = '/api/proxy-bodies';
 
-    static async getAllRecords() {
-        const res = await instanceAxios.get(this.apiUrl);
+    static async getAllHeadersRecords(body) {
+        const res = await instanceAxios.get(this.apiUrl + `/${body}`);
         return res.data;
     }
 

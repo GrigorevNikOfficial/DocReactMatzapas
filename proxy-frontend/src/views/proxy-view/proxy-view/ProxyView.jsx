@@ -2,11 +2,11 @@ import { DatePicker, Button, Space, Table, Select } from "antd";
 import React, { useEffect, useRef, useState } from "react"; 
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'; 
 import { useParams } from "react-router"; 
-import MatzapasBodyService from "../../../api/services/proxy-body-service"; 
-import MatzapasHeaderService from "../../../api/services/proxy-header-service"; 
-import CompanyService from "../../../api/services/organization-service"; 
-import DirectorService from "../../../api/services/individuals-service"; 
-import MaterialService from "../../../api/services/product-service"; 
+import ProxyBodyService from "../../../api/services/proxy-body-service"; 
+import ProxyHeadersService from "../../../api/services/proxy-header-service"; 
+import OrganizationService from "../../../api/services/organization-service"; 
+import IndividualService from "../../../api/services/individuals-service"; 
+import ProductService from "../../../api/services/product-service"; 
 import { ProxyBodiesDialog } from "../../../components/dialogs/proxy-bodies-dialog/ProxyBodiesDialog"; 
 import { useReactToPrint } from "react-to-print"; 
 import dayjs from 'dayjs';
@@ -78,11 +78,11 @@ export const ProxyView = ({
  useEffect( () => { 
   async function fetchData() { 
 
-   const list = await MatzapasBodyService.getAllHeadersRecords(id); 
-   const individuals = await DirectorService.getAllRecords(); 
-   const organizations = await CompanyService.getAllRecords(); 
-   const products = await MaterialService.getAllRecords(); 
-   const proxy = await MatzapasHeaderService.getOneRecord(id);
+   const list = await ProxyBodyService.getAllHeadersRecords(id); 
+   const individuals = await IndividualService.getAllRecords(); 
+   const organizations = await OrganizationService.getAllRecords(); 
+   const products = await ProductService.getAllRecords(); 
+   const proxy = await ProxyHeadersService.getOneRecord(id);
    console.log(proxy)
  
    setList(list); 
@@ -118,7 +118,7 @@ export const ProxyView = ({
   setVisible(true) 
  } 
  const deleteRecordHandler = async (recordId) => { 
-  await MatzapasBodyService.removeRecord(recordId); 
+  await ProxyBodyService.removeRecord(recordId); 
   setList(list.filter(it => it.id !== recordId)); 
  } 
 
@@ -140,7 +140,7 @@ export const ProxyView = ({
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(proxy?.dischargeDate, 'YYYY-MM-DD') || null} 
-      onChange={date => setProxy({ ...proxy, dischargeDate: date },MatzapasHeaderService.updateRecord({ 
+      onChange={date => setProxy({ ...proxy, dischargeDate: date },ProxyHeadersService.updateRecord({ 
        ...proxy, dischargeDate: date 
       })) 
       } 
@@ -154,7 +154,7 @@ export const ProxyView = ({
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(proxy?.endDate, 'YYYY-MM-DD') || null} 
-      onChange={date => setProxy({ ...proxy, endDate: date },MatzapasHeaderService.updateRecord({ 
+      onChange={date => setProxy({ ...proxy, endDate: date },ProxyHeadersService.updateRecord({ 
        ...proxy, endDate: date 
       })) 
       } 
@@ -167,7 +167,7 @@ export const ProxyView = ({
      <Space>Доверенность выдана: <strong> 
       <Select 
        value={proxy?.organizationId || null} 
-       onChange={value => setProxy({ ...proxy, organizationId: value },MatzapasHeaderService.updateRecord({ 
+       onChange={value => setProxy({ ...proxy, organizationId: value },ProxyHeadersService.updateRecord({ 
         ...proxy, organizationId: value 
        })) 
        } 
@@ -185,7 +185,7 @@ export const ProxyView = ({
      <Space>Получатель: <strong> 
      <Select 
        value={proxy?.individualId || null} 
-       onChange={value => setProxy({ ...proxy, individualId: value },MatzapasHeaderService.updateRecord({ 
+       onChange={value => setProxy({ ...proxy, individualId: value },ProxyHeadersService.updateRecord({ 
         ...proxy, individualId: value 
        })) 
        } 

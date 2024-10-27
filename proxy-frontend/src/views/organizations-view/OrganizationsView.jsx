@@ -2,9 +2,9 @@
 import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import MaterialService from "../../api/services/product-service";
+import ProductService from "../../api/services/product-service";
 import { ProductsDialog } from "../../components/dialogs/products-dialog/ProductsDialog";
-import CompanyService from "../../api/services/organization-service";
+import OrganizationService from "../../api/services/organization-service";
 import { OrganizationsDialog } from "../../components/dialogs/organizations-dialog/OrganizationsDialog";
 
 export const OrganizationsView = ({
@@ -50,7 +50,7 @@ export const OrganizationsView = ({
 
     useEffect(() => {
       const fetchData = async () => {
-          const list = await CompanyService.getAllRecords();
+          const list = await OrganizationService.getAllRecords();
           setList(list);
       };
   
@@ -67,7 +67,7 @@ export const OrganizationsView = ({
     }
 
     const deleteRecordHandler = async (recordId) => {
-        await CompanyService.removeRecord(recordId);
+        await OrganizationService.removeRecord(recordId);
         setList(list.filter(it => it.id !== recordId));
     }
 
