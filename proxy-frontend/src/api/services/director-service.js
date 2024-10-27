@@ -1,9 +1,8 @@
-
 import { instanceAxios } from "../axios-config";
 
-export default class IndividualService {
+export default class DirectorService {
 
-    static apiUrl = '/api/individuals';
+    static apiUrl = '/api/directors';
 
     static async getAllRecords() {
         const res = await instanceAxios.get(this.apiUrl);

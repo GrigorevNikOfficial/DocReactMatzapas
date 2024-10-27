@@ -1,8 +1,8 @@
 import { instanceAxios } from "../axios-config";
 
-export default class ProxyHeadersService {
+export default class MatzapasHeaderService {
 
-    static apiUrl = '/api/proxy-headers';
+    static apiUrl = '/api/matzapas-headers';
 
     static async getAllRecords() {
         const res = await instanceAxios.get(this.apiUrl);

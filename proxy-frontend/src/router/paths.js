@@ -1,16 +1,16 @@
 export const ROUTE_PATHS = { 
 
-   products: 'products', // страница для справочника товаров 
+   materials: 'materials', // страница для справочника товаров 
     
-   individuals: 'individuals', // страница для справочника физ. лиц 
+   directors: 'directors', // страница для справочника физ. лиц 
     
-   organizations: 'organizations', // страница для справочника организаций 
+   companies: 'companies', // страница для справочника организаций 
     
-  proxy: { 
+  matzapas: { 
     
-    list: 'proxy',// страница списка документов доверенность 
+    list: 'matzapas',// страница списка документов доверенность 
     
-    proxy: 'proxy/:id', // страница конкретного документа доверенности со списком товаров  
+    matzapas: 'matzapas/:id', // страница конкретного документа доверенности со списком товаров  
     
    }, 
     

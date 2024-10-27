@@ -1,7 +1,7 @@
 import { Input, Space } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React, { useEffect, useState } from "react";
-import IndividualService from "../../../api/services/individuals-service";
+import DirectorService from "../../../api/services/individuals-service";
 
 export const IndividualsDialog = ({
     visible,
@@ -23,11 +23,11 @@ export const IndividualsDialog = ({
     const onOkHandler = async () => {
         const record =
             currentRecord
-                ? await IndividualService.updateRecord({
+                ? await DirectorService.updateRecord({
                     id: currentRecord.id,
                     ...individual,
                 })
-                : await IndividualService.createRecord(individual)
+                : await DirectorService.createRecord(individual)
         onOk(record);
     }
 

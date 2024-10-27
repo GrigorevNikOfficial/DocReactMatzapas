@@ -1,10 +1,9 @@
-const ProxyBodyService = require('../services/proxy-body-service');
+const CompanyService = require('../services/company-service');
 
-class ProxyBodyController {
-    async getAllHeadersRecords(req, res) {
+class CompanyController {
+    async getAllRecords(req, res) {
         try {
-            const headerId = req.params.headerId;
-            const list = await ProxyBodyService.getAllHeadersRecords(headerId);
+            const list = await CompanyService.getAllRecords();
             return res
                 .status(200)
                 .json(list);
@@ -17,7 +16,7 @@ class ProxyBodyController {
 
     async createRecord(req, res) {
         try {
-            const record = await ProxyBodyService.createRecord(req.body);
+            const record = await CompanyService.createRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -30,7 +29,7 @@ class ProxyBodyController {
 
     async updateRecord(req, res) {
         try {
-            const record = await ProxyBodyService.updateRecord(req.body);
+            const record = await CompanyService.updateRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -44,7 +43,7 @@ class ProxyBodyController {
     async removeRecord(req, res) {
         try {
             const recordId = req.params.id;
-            const record = await ProxyBodyService.removeRecord(recordId);
+            const record = await CompanyService.removeRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -56,4 +55,4 @@ class ProxyBodyController {
     }
 }
 
-module.exports = new ProxyBodyController()
+module.exports = new CompanyController()

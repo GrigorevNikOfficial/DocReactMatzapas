@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../connection');
 
-const ProxyBodyModel = sequelize.define(
-    'proxybody',
+const CompanyModel = sequelize.define(
+    'company',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -10,23 +10,20 @@ const ProxyBodyModel = sequelize.define(
             autoIncrement: true,
             allowNull: false,
         },
-        count: {
-            type: Sequelize.INTEGER,
-            allowNull: true,
-            defaultValue: 1,
-        },
-        unit: {
-            type: Sequelize.STRING(8),
+        name: {
+            type: Sequelize.STRING(50),
             allowNull: false,
         },
-        proxyHeaderId: {
-            type: Sequelize.INTEGER,
-            foreignKey: true,
+        inn: {
+            type: Sequelize.STRING(10),
             allowNull: false,
         },
-        productId: {
-            type: Sequelize.INTEGER,
-            foreignKey: true,
+        kpp: {
+            type: Sequelize.STRING(12),
+            allowNull: false,
+        },
+        okpo: {
+            type: Sequelize.STRING(10),
             allowNull: false,
         },
     },
@@ -35,4 +32,4 @@ const ProxyBodyModel = sequelize.define(
     }
 );
 
-module.exports = ProxyBodyModel;
+module.exports = CompanyModel;

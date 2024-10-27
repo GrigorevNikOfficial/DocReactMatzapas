@@ -1,30 +1,30 @@
-const ProductModel = require('../models/product-model');
+const MaterialModel = require('../models/material-model');
 
-class ProductService {
+class MaterialService {
     /** получить все записи из таблицы "products" */
     async getAllRecords() {
-        const list = await ProductModel.findAll();
+        const list = await MaterialModel.findAll();
         return list;
     }
 
     /** создать запись в таблице "products" */
     async createRecord(payload) {
-        const data = await ProductModel.create(payload);
+        const data = await MaterialModel.create(payload);
         return data;
     }
 
     /** обновить запись в таблице "products" */
     async updateRecord(payload) {
-        let record = await ProductModel.findOne({ where: { id: payload.id } });
+        let record = await MaterialModel.findOne({ where: { id: payload.id } });
         record.title = payload?.title || record.title;
         return await record.save();
     }
 
     /** удалить запись из таблицы "products" */
     async removeRecord(recordId) {
-        const record = await ProductModel.destroy({ where: { id: recordId } });
+        const record = await MaterialModel.destroy({ where: { id: recordId } });
         return record;
     }
 }
 
-module.exports = new ProductService();
+module.exports = new MaterialService();

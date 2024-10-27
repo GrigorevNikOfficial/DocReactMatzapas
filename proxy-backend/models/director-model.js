@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../connection');
 
-const IndividualModel = sequelize.define(
-    'individual',
+const DirectorModel = sequelize.define(
+    'director',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -22,16 +22,8 @@ const IndividualModel = sequelize.define(
             type: Sequelize.STRING(25),
             allowNull: true,
         },
-        issued: {
-            type: Sequelize.STRING(80),
-            allowNull: false,
-        },
-        series: {
-            type: Sequelize.STRING(4),
-            allowNull: false,
-        },
-        number: {
-            type: Sequelize.STRING(6),
+        department: {
+            type: Sequelize.STRING(50),
             allowNull: false,
         },
     },
@@ -40,4 +32,4 @@ const IndividualModel = sequelize.define(
     }
 );
 
-module.exports = IndividualModel;
+module.exports = DirectorModel;

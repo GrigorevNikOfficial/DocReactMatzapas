@@ -1,136 +1,136 @@
 const Router = require("express").Router;
-const ProductController = require('../controllers/product-controller');
-const OrgatizationController = require('../controllers/organization-controller');
-const IndividualController = require('../controllers/individual-controller');
-const ProxyBodyController = require('../controllers/proxy-body-controller');
-const ProxyHeaderController = require('../controllers/proxy-header-controller');
+const MaterialController = require('../controllers/material-controller');
+const CompanyController = require('../controllers/company-controller');
+const DirectorController = require('../controllers/director-controller');
+const MatzapasBodyController = require('../controllers/matzapas-body-controller');
+const MatzapasHeaderController = require('../controllers/matzapas-header-controller');
 
 const router = new Router();
 
 router.get
     (
-        '/products',
-        ProductController.getAllRecords,
+        '/materials',
+        MaterialController.getAllRecords,
     );
 
 router.post
     (
-        '/products',
-        ProductController.createRecord,
+        '/materials',
+        MaterialController.createRecord,
     );
 
 router.put
     (
-        '/products',
-        ProductController.updateRecord,
+        '/materials',
+        MaterialController.updateRecord,
     );
 
 router.delete
     (
-        '/products/:id',
-        ProductController.removeRecord,
+        '/materials/:id',
+        MaterialController.removeRecord,
     );
 
 router.get
     (
-        '/organizations',
-        OrgatizationController.getAllRecords,
+        '/companies',
+        CompanyController.getAllRecords,
     );
 
 router.post
     (
-        '/organizations',
-        OrgatizationController.createRecord,
+        '/companies',
+        CompanyController.createRecord,
     );
 
 router.put
     (
-        '/organizations',
-        OrgatizationController.updateRecord,
+        '/companies',
+        CompanyController.updateRecord,
     );
 
 router.delete
     (
-        '/organizations/:id',
-        OrgatizationController.removeRecord,
+        '/companies/:id',
+        CompanyController.removeRecord,
     );
 
 router.get
     (
-        '/individuals',
-        IndividualController.getAllRecords,
+        '/directors',
+        DirectorController.getAllRecords,
     );
 
 router.post
     (
-        '/individuals',
-        IndividualController.createRecord,
+        '/directors',
+        DirectorController.createRecord,
     );
 
 router.put
     (
-        '/individuals',
-        IndividualController.updateRecord,
+        '/directors',
+        DirectorController.updateRecord,
     );
 
 router.delete
     (
-        '/individuals/:id',
-        IndividualController.removeRecord,
+        '/directors/:id',
+        DirectorController.removeRecord,
     );
 
 router.get
     (
-        '/proxy-bodies/:headerId',
-        ProxyBodyController.getAllHeadersRecords,
+        '/matzapas-bodies/:headerId',
+        MatzapasBodyController.getAllHeadersRecords,
     );
 
 router.post
     (
-        '/proxy-bodies',
-        ProxyBodyController.createRecord,
+        '/matzapas-bodies',
+        MatzapasBodyController.createRecord,
     );
 
 router.put
     (
-        '/proxy-bodies',
-        ProxyBodyController.updateRecord,
+        '/matzapas-bodies',
+        MatzapasBodyController.updateRecord,
     );
 
 router.delete
     (
-        '/proxy-bodies/:id',
-        ProxyBodyController.removeRecord,
+        '/matzapas-bodies/:id',
+        MatzapasBodyController.removeRecord,
     );
 
 router.get
     (
-        '/proxy-headers',
-        ProxyHeaderController.getAllRecords,
+        '/matzapas-headers',
+        MatzapasHeaderController.getAllRecords,
     );
 
 router.get
     (
-        '/proxy-headers/:id',
-        ProxyHeaderController.getOneRecord,
+        '/matzapas-headers/:id',
+        MatzapasHeaderController.getOneRecord,
     );
 
 router.post
     (
-        '/proxy-headers',
-        ProxyHeaderController.createRecord,
+        '/matzapas-headers',
+        MatzapasHeaderController.createRecord,
     );
 
 router.put
     (
-        '/proxy-headers',
-        ProxyHeaderController.updateRecord,
+        '/matzapas-headers',
+        MatzapasHeaderController.updateRecord,
     );
 
 router.delete
     (
-        '/proxy-headers/:id',
-        ProxyHeaderController.removeRecord,
+        '/matzapas-headers/:id',
+        MatzapasHeaderController.removeRecord,
     );
 
 module.exports = router;

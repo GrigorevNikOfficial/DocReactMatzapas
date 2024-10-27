@@ -1,9 +1,9 @@
-const IndividualService = require('../services/individual-service');
+const MatzapasHeaderService = require('../services/matzapas-header-service');
 
-class IndividualController {
+class MatzapasHeaderController {
     async getAllRecords(req, res) {
         try {
-            const list = await IndividualService.getAllRecords();
+            const list = await MatzapasHeaderService.getAllRecords();
             return res
                 .status(200)
                 .json(list);
@@ -14,9 +14,10 @@ class IndividualController {
         }
     }
 
-    async createRecord(req, res) {
+    async getOneRecord(req, res) {
         try {
-            const record = await IndividualService.createRecord(req.body);
+            const recordId = req.params.id;
+            const record = await MatzapasHeaderService.getOneRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -27,9 +28,22 @@ class IndividualController {
         }
     }
 
+    async createRecord(req, res) {
+        try {
+            const record = await MatzapasHeaderService.createRecord(req.body);
+            return res
+                .status(200)
+                .json(record);
+        } catch (e) {
+            return res
+                .status(500)    
+                .json(e);
+        }
+    }
+
     async updateRecord(req, res) {
         try {
-            const record = await IndividualService.updateRecord(req.body);
+            const record = await MatzapasHeaderService.updateRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -43,7 +57,7 @@ class IndividualController {
     async removeRecord(req, res) {
         try {
             const recordId = req.params.id;
-            const record = await IndividualService.removeRecord(recordId);
+            const record = await MatzapasHeaderService.removeRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -55,4 +69,4 @@ class IndividualController {
     }
 }
 
-module.exports = new IndividualController()
+module.exports = new MatzapasHeaderController()

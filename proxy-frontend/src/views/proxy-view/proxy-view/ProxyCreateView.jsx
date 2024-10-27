@@ -3,11 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'; 
 import { useParams } from "react-router"; 
 import { useNavigate } from "react-router-dom"; 
-import ProxyBodyService from "../../../api/services/proxy-body-service"; 
-import ProxyHeadersService from "../../../api/services/proxy-header-service"; 
-import OrganizationService from "../../../api/services/organization-service"; 
-import IndividualService from "../../../api/services/individuals-service"; 
-import ProductService from "../../../api/services/product-service"; 
+import MatzapasBodyService from "../../../api/services/proxy-body-service"; 
+import MatzapasHeaderService from "../../../api/services/proxy-header-service"; 
+import CompanyService from "../../../api/services/organization-service"; 
+import DirectorService from "../../../api/services/individuals-service"; 
+import MaterialService from "../../../api/services/product-service"; 
 import { ProxyBodiesCreateDialog } from "../../../components/dialogs/proxy-bodies-dialog/ProxyBodiesCreateDialog"; 
 import dayjs from 'dayjs';
 
@@ -77,10 +77,10 @@ export const ProxyCreateView = ({
  
  useEffect( () => { 
    async function fetchData() { 
-    const list = await ProxyBodyService.getAllHeadersRecords(id); 
-    const individuals = await IndividualService.getAllRecords(); 
-    const organizations = await OrganizationService.getAllRecords(); 
-    const products = await ProductService.getAllRecords(); 
+    const list = await MatzapasBodyService.getAllHeadersRecords(id); 
+    const individuals = await DirectorService.getAllRecords(); 
+    const organizations = await CompanyService.getAllRecords(); 
+    const products = await MaterialService.getAllRecords(); 
 
  
     setList(list); 
@@ -118,7 +118,7 @@ export const ProxyCreateView = ({
 
  
  const saveHeader = async () => { 
-   await ProxyHeadersService.createRecord(proxyHeader); 
+   await MatzapasHeaderService.createRecord(proxyHeader); 
  } 
 
  
@@ -126,14 +126,14 @@ export const ProxyCreateView = ({
    list.forEach( async (record) => { 
     record['proxyHeaderId'] = id; 
     delete record.id; 
-    await ProxyBodyService.createRecord(record); 
+    await MatzapasBodyService.createRecord(record); 
    }); 
  } 
 
  
  const saveRecordHandler = async () => { 
    await saveHeader(); 
-   const allRecords = await ProxyHeadersService.getAllRecords(); 
+   const allRecords = await MatzapasHeaderService.getAllRecords(); 
    const id = allRecords.at(-1)['id']; 
    saveBody(id); 
    navigate('/'); 

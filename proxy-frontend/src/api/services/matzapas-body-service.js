@@ -1,12 +1,11 @@
-
 import { instanceAxios } from "../axios-config";
 
-export default class OrganizationService {
+export default class MatzapasBodyService {
 
-    static apiUrl = '/api/organizations';
+    static apiUrl = '/api/matzapas-bodies';
 
-    static async getAllRecords() {
-        const res = await instanceAxios.get(this.apiUrl);
+    static async getAllHeadersRecords(body) {
+        const res = await instanceAxios.get(this.apiUrl + `/${body}`);
         return res.data;
     }
 

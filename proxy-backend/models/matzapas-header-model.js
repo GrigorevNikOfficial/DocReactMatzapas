@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../connection');
 
-const ProxyHeaderModel = sequelize.define(
-    'proxyheader',
+const MatzapasHeaderModel = sequelize.define(
+    'matzapasheader',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -10,27 +10,35 @@ const ProxyHeaderModel = sequelize.define(
             autoIncrement: true,
             allowNull: false,
         },
-        number: {
-            type: Sequelize.INTEGER,
+        date: {
+            type: Sequelize.DATE,
             allowNull: false,
         },
-        dischargeDate: {
-            type: Sequelize.DATE,
+        directorID: {
+            type: Sequelize.INTEGER,
+            foreignKey: true,
             allowNull: false
         },
-        endDate: {
+        signatureDate: {
             type: Sequelize.DATE,
             allowNull: false,
         },
-        individualId: {
+        copmanyID: {
             type: Sequelize.INTEGER,
             foreignKey: true,
             allowNull: false,
         },
-        organizationId: {
-            type: Sequelize.INTEGER,
-            foreignKey: true,
+        commission: {
+            type: Sequelize.STRING(255),
             allowNull: false,
+        },
+        orderDate: {
+            type: Sequelize.DATE,
+            allowNull: false,
+        },
+        orderNumber: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         },
     },
     {
@@ -38,4 +46,4 @@ const ProxyHeaderModel = sequelize.define(
     }
 );
 
-module.exports = ProxyHeaderModel;
+module.exports = MatzapasHeaderModel;

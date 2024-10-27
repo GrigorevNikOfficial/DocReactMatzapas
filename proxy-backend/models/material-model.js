@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../connection');
 
-const OrganizationModel = sequelize.define(
-    'organization',
+const MaterialModel = sequelize.define(
+    'material',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -11,11 +11,7 @@ const OrganizationModel = sequelize.define(
             allowNull: false,
         },
         title: {
-            type: Sequelize.STRING(50),
-            allowNull: false,
-        },
-        inn: {
-            type: Sequelize.STRING(10),
+            type: Sequelize.STRING(100),
             allowNull: false,
         },
     },
@@ -24,4 +20,4 @@ const OrganizationModel = sequelize.define(
     }
 );
 
-module.exports = OrganizationModel;
+module.exports = MaterialModel;

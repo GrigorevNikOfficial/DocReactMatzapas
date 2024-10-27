@@ -1,7 +1,7 @@
 import { Input, Space } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React, { useEffect, useState } from "react";
-import OrganizationService from "../../../api/services/organization-service";
+import CompanyService from "../../../api/services/organization-service";
 
 export const OrganizationsDialog = ({
     visible,
@@ -23,11 +23,11 @@ export const OrganizationsDialog = ({
     const onOkHandler = async () => {
         const record =
             currentRecord
-                ? await OrganizationService.updateRecord({
+                ? await CompanyService.updateRecord({
                     id: currentRecord.id,
                     ...organization,
                 })
-                : await OrganizationService.createRecord(organization)
+                : await CompanyService.createRecord(organization)
         onOk(record);
     }
 

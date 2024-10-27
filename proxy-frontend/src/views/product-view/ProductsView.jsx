@@ -2,7 +2,7 @@
 import { Button, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import ProductService from "../../api/services/product-service";
+import MaterialService from "../../api/services/product-service";
 import { ProductsDialog } from "../../components/dialogs/products-dialog/ProductsDialog";
 
 export const ProductsView = ({
@@ -43,7 +43,7 @@ export const ProductsView = ({
 
     useEffect(() => {
       const fetchData = async () => {
-          const list = await ProductService.getAllRecords();
+          const list = await MaterialService.getAllRecords();
           setList(list);
       };
   
@@ -60,7 +60,7 @@ export const ProductsView = ({
     }
 
     const deleteRecordHandler = async (recordId) => {
-        await ProductService.removeRecord(recordId);
+        await MaterialService.removeRecord(recordId);
         setList(list.filter(it => it.id !== recordId));
     }
 

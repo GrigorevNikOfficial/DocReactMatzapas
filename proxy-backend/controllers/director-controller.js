@@ -1,9 +1,9 @@
-const ProductService = require('../services/product-service');
+const DirectorService = require('../services/director-service');
 
-class ProductController {
+class DirectorController {
     async getAllRecords(req, res) {
         try {
-            const list = await ProductService.getAllRecords();
+            const list = await DirectorService.getAllRecords();
             return res
                 .status(200)
                 .json(list);
@@ -16,7 +16,7 @@ class ProductController {
 
     async createRecord(req, res) {
         try {
-            const record = await ProductService.createRecord(req.body);
+            const record = await DirectorService.createRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -29,7 +29,7 @@ class ProductController {
 
     async updateRecord(req, res) {
         try {
-            const record = await ProductService.updateRecord(req.body);
+            const record = await DirectorService.updateRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -43,7 +43,7 @@ class ProductController {
     async removeRecord(req, res) {
         try {
             const recordId = req.params.id;
-            const record = await ProductService.removeRecord(recordId);
+            const record = await DirectorService.removeRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -55,4 +55,4 @@ class ProductController {
     }
 }
 
-module.exports = new ProductController()
+module.exports = new DirectorController()

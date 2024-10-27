@@ -1,9 +1,10 @@
-const ProxyHeaderService = require('../services/proxy-header-service');
+const MatzapasBodyService = require('../services/matzapas-body-service');
 
-class ProxyHeaderController {
-    async getAllRecords(req, res) {
+class MatzapasBodyController {
+    async getAllHeadersRecords(req, res) {
         try {
-            const list = await ProxyHeaderService.getAllRecords();
+            const headerId = req.params.headerId;
+            const list = await MatzapasBodyService.getAllHeadersRecords(headerId);
             return res
                 .status(200)
                 .json(list);
@@ -14,10 +15,9 @@ class ProxyHeaderController {
         }
     }
 
-    async getOneRecord(req, res) {
+    async createRecord(req, res) {
         try {
-            const recordId = req.params.id;
-            const record = await ProxyHeaderService.getOneRecord(recordId);
+            const record = await MatzapasBodyService.createRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -28,22 +28,9 @@ class ProxyHeaderController {
         }
     }
 
-    async createRecord(req, res) {
-        try {
-            const record = await ProxyHeaderService.createRecord(req.body);
-            return res
-                .status(200)
-                .json(record);
-        } catch (e) {
-            return res
-                .status(500)    
-                .json(e);
-        }
-    }
-
     async updateRecord(req, res) {
         try {
-            const record = await ProxyHeaderService.updateRecord(req.body);
+            const record = await MatzapasBodyService.updateRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -57,7 +44,7 @@ class ProxyHeaderController {
     async removeRecord(req, res) {
         try {
             const recordId = req.params.id;
-            const record = await ProxyHeaderService.removeRecord(recordId);
+            const record = await MatzapasBodyService.removeRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -69,4 +56,4 @@ class ProxyHeaderController {
     }
 }
 
-module.exports = new ProxyHeaderController()
+module.exports = new MatzapasBodyController()

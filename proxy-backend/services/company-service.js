@@ -1,31 +1,33 @@
-const OrganizationModel = require('../models/organization-model');
+const CompanyModel = require('../models/company-model');
 
-class OrganizationService {
+class CompanyService {
     /** получить все записи из таблицы "organizations" */
     async getAllRecords() {
-        const list = await OrganizationModel.findAll();
+        const list = await CompanyModel.findAll();
         return list;
     }
 
     /** создать запись в таблице "organizations" */
     async createRecord(payload) {
-        const data = await OrganizationModel.create(payload);
+        const data = await CompanyModel.create(payload);
         return data;
     }
 
     /** обновить запись в таблице "organizations" */
     async updateRecord(payload) {
-        let record = await OrganizationModel.findOne({ where: { id: payload.id } });
-        record.title = payload?.title || record.title;
+        let record = await CompanyModel.findOne({ where: { id: payload.id } });
+        record.name = payload?.name || record.name;
         record.inn = payload?.inn || record.inn;
+        record.kpp = payload?.kpp || record.kpp;
+        record.okpo = payload?.okpo || record.okpo;
         return await record.save();
     }
 
     /** удалить запись из таблицы "organizations" */
     async removeRecord(recordId) {
-        const record = await OrganizationModel.destroy({ where: { id: recordId } });
+        const record = await CompanyModel.destroy({ where: { id: recordId } });
         return record;
     }
 }
 
-module.exports = new OrganizationService();
+module.exports = new CompanyService();

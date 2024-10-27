@@ -1,9 +1,9 @@
-const OrgatizationService = require('../services/organization-service');
+const MaterialService = require('../services/material-service');
 
-class OrgatizationController {
+class MaterialController {
     async getAllRecords(req, res) {
         try {
-            const list = await OrgatizationService.getAllRecords();
+            const list = await MaterialService.getAllRecords();
             return res
                 .status(200)
                 .json(list);
@@ -16,7 +16,7 @@ class OrgatizationController {
 
     async createRecord(req, res) {
         try {
-            const record = await OrgatizationService.createRecord(req.body);
+            const record = await MaterialService.createRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -29,7 +29,7 @@ class OrgatizationController {
 
     async updateRecord(req, res) {
         try {
-            const record = await OrgatizationService.updateRecord(req.body);
+            const record = await MaterialService.updateRecord(req.body);
             return res
                 .status(200)
                 .json(record);
@@ -43,7 +43,7 @@ class OrgatizationController {
     async removeRecord(req, res) {
         try {
             const recordId = req.params.id;
-            const record = await OrgatizationService.removeRecord(recordId);
+            const record = await MaterialService.removeRecord(recordId);
             return res
                 .status(200)
                 .json(record);
@@ -55,4 +55,4 @@ class OrgatizationController {
     }
 }
 
-module.exports = new OrgatizationController()
+module.exports = new MaterialController()

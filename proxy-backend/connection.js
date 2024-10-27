@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 //**  Подключение к БД  **//
 const sequelize = new Sequelize(
-    'proxy', // название Базы Данных
+    'matzapas', // название Базы Данных
     'root', // Пользователь Базы Данных 
     '11111111', // Пароль для пользователя root
     {

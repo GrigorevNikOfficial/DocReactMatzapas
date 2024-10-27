@@ -1,35 +1,33 @@
-const IndividualModel = require('../models/individual-model');
+const DirectorModel = require('../models/director-model');
 
-class IndividualService {
+class DirectorService {
     /** получить все записи из таблицы "individuals" */
     async getAllRecords() {
-        const list = await IndividualModel.findAll();
+        const list = await DirectorModel.findAll();
         return list;
     }
 
     /** создать запись в таблице "individuals" */
     async createRecord(payload) {
-        const data = await IndividualModel.create(payload);
+        const data = await DirectorModel.create(payload);
         return data;
     }
 
     /** обновить запись в таблице "individuals" */
     async updateRecord(payload) {
-        let record = await IndividualModel.findOne({ where: { id: payload.id } });
+        let record = await DirectorModel.findOne({ where: { id: payload.id } });
         record.firstName = payload?.firstName || record.firstName;
         record.lastName = payload?.lastName || record.lastName;
         record.patronymic = payload?.patronymic || record.patronymic;
-        record.issued = payload?.issued || record.issued;
-        record.series = payload?.series || record.series;
-        record.number = payload?.number || record.number;
+        record.department = payload?.department || record.department;
         return await record.save();
     }
 
     /** удалить запись из таблицы "individuals" */
     async removeRecord(recordId) {
-        const record = await IndividualModel.destroy({ where: { id: recordId } });
+        const record = await DirectorModel.destroy({ where: { id: recordId } });
         return record;
     }
 }
 
-module.exports = new IndividualService();
+module.exports = new DirectorService();

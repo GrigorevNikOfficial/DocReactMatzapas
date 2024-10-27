@@ -1,8 +1,8 @@
 import { instanceAxios } from "../axios-config"; 
- export default class ProductService { 
+ export default class MaterialService { 
 
  
-   static apiUrl = '/api/products'; 
+   static apiUrl = '/api/materials'; 
 
  
    static async getAllRecords() { 
