@@ -1,7 +1,7 @@
 const MatzapasBodyModel = require('../models/matzapas-body-model');
 
 class MatzapasBodyService {
-    /** получить все записи из таблицы "proxybodies" по  proxyHeaderId */
+    /** получить все записи из таблицы "proxybodies" по  matzapasHeaderID */
     async getAllHeadersRecords(headerId) {
         const list = await MatzapasBodyModel.findAll({ where: { matzapasHeaderID: headerId } });
         return list;

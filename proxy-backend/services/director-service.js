@@ -1,19 +1,19 @@
 const DirectorModel = require('../models/director-model');
 
 class DirectorService {
-    /** получить все записи из таблицы "individuals" */
+    /** получить все записи из таблицы "directors" */
     async getAllRecords() {
         const list = await DirectorModel.findAll();
         return list;
     }
 
-    /** создать запись в таблице "individuals" */
+    /** создать запись в таблице "directors" */
     async createRecord(payload) {
         const data = await DirectorModel.create(payload);
         return data;
     }
 
-    /** обновить запись в таблице "individuals" */
+    /** обновить запись в таблице "directors" */
     async updateRecord(payload) {
         let record = await DirectorModel.findOne({ where: { id: payload.id } });
         record.firstName = payload?.firstName || record.firstName;
@@ -23,7 +23,7 @@ class DirectorService {
         return await record.save();
     }
 
-    /** удалить запись из таблицы "individuals" */
+    /** удалить запись из таблицы "directors" */
     async removeRecord(recordId) {
         const record = await DirectorModel.destroy({ where: { id: recordId } });
         return record;

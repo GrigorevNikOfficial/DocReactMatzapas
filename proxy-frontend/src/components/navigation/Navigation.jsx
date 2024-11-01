@@ -34,7 +34,7 @@ export const Navigation = ({
          Их мы прописывали в ROUTE_PATHS 
           
        */} 
-       <Link to={ROUTE_PATHS.proxy.list}> 
+       <Link to={ROUTE_PATHS.matzapas.list}> 
          Документы 
        </Link> 
       </Menu.Item> 
@@ -44,22 +44,22 @@ export const Navigation = ({
 
  
        <Menu.Item key={'menu-2'}> 
-         <Link to={ROUTE_PATHS.individuals}> 
-          Физические лица 
+         <Link to={ROUTE_PATHS.directors}> 
+          Директора 
          </Link> 
        </Menu.Item> 
 
  
        <Menu.Item key={'menu-3'}> 
-         <Link to={ROUTE_PATHS.organizations}> 
-          Организации 
+         <Link to={ROUTE_PATHS.companies}> 
+          Компании 
          </Link> 
        </Menu.Item> 
 
  
        <Menu.Item key={'menu-4'}> 
-         <Link to={ROUTE_PATHS.products}> 
-          Товары 
+         <Link to={ROUTE_PATHS.materials}> 
+          Материалы 
          </Link> 
        </Menu.Item> 
 

@@ -1,19 +1,19 @@
 const CompanyModel = require('../models/company-model');
 
 class CompanyService {
-    /** получить все записи из таблицы "organizations" */
+    /** получить все записи из таблицы "companies" */
     async getAllRecords() {
         const list = await CompanyModel.findAll();
         return list;
     }
 
-    /** создать запись в таблице "organizations" */
+    /** создать запись в таблице "companies" */
     async createRecord(payload) {
         const data = await CompanyModel.create(payload);
         return data;
     }
 
-    /** обновить запись в таблице "organizations" */
+    /** обновить запись в таблице "companies" */
     async updateRecord(payload) {
         let record = await CompanyModel.findOne({ where: { id: payload.id } });
         record.name = payload?.name || record.name;
@@ -23,7 +23,7 @@ class CompanyService {
         return await record.save();
     }
 
-    /** удалить запись из таблицы "organizations" */
+    /** удалить запись из таблицы "companies" */
     async removeRecord(recordId) {
         const record = await CompanyModel.destroy({ where: { id: recordId } });
         return record;

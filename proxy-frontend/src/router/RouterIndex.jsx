@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigation } from "../components/navigation/Navigation";
-import { IndividualsView } from "../views/individuals-view/IndividualsView";
-import { OrganizationsView } from "../views/organizations-view/OrganizationsView";
-import { ProductsView } from "../views/product-view/ProductsView";
-import { ProxyListView } from "../views/proxy-view/proxy-list-view/ProxyListView";
-import { ProxyView } from "../views/proxy-view/proxy-view/ProxyView";
-import { ProxyCreateView } from "../views/proxy-view/proxy-view/ProxyCreateView";
+import { DirectorsView } from "../views/directors-view/DirectorsView";
+import { CompaniesView } from "../views/companies-view/CompaniesView";
+import { MaterialsView } from "../views/materials-view/MaterialsView";
+import { MatzapasListView } from "../views/matzapas-view/matzapas-list-view/MatzapasListView";
+import { MatzapasView } from "../views/matzapas-view/matzapas-view/MatzapasView";
+import { MatzapasCreateView } from "../views/matzapas-view/matzapas-view/MatzapasCreateView";
 import { ROUTE_PATHS } from "./paths";
 
 export const RouterIndex = (props) => {
@@ -16,31 +16,31 @@ export const RouterIndex = (props) => {
                 <Routes>
                     <Route
                         path={'/'}
-                        element={<ProxyListView />}
+                        element={<MatzapasListView />}
                     />
                     <Route
-                        path={ROUTE_PATHS.products}
-                        element={<ProductsView />}
+                        path={ROUTE_PATHS.materials}
+                        element={<MaterialsView />}
                     />
                     <Route
-                        path={ROUTE_PATHS.individuals}
-                        element={<IndividualsView />}
+                        path={ROUTE_PATHS.directors}
+                        element={<DirectorsView />}
                     />
                     <Route
-                        path={ROUTE_PATHS.organizations}
-                        element={<OrganizationsView />}
+                        path={ROUTE_PATHS.companies}
+                        element={<CompaniesView />}
                     />
                     <Route
-                        path={ROUTE_PATHS.proxy.list}
-                        element={<ProxyListView />}
+                        path={ROUTE_PATHS.matzapas.list}
+                        element={<MatzapasListView />}
                     />
                     <Route
-                        path={ROUTE_PATHS.proxy.proxy}
-                        element={<ProxyView />}
+                        path={ROUTE_PATHS.matzapas.matzapas}
+                        element={<MatzapasView />}
                     />
                     <Route 
                      path={ROUTE_PATHS.create} 
-                       element={<ProxyCreateView />} 
+                       element={<MatzapasCreateView />} 
                      /> 
                 </Routes>
             </Navigation>
