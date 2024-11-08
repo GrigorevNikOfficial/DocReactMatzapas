@@ -1,7 +1,5 @@
-  import React from "react"; 
+import React from "react"; 
 
-  import { RouterIndex } from "./router/RouterIndex"; 
+import { RouterIndex } from "./router/RouterIndex"; 
 
- 
-
-  export const App = () => <RouterIndex /> 
+export const App = () => <RouterIndex /> 

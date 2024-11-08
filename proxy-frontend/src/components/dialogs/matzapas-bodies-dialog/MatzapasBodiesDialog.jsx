@@ -148,7 +148,7 @@ export const MatzapasBodiesDialog = ({
      <Input  
       value={matzapasBody?.credit || ''} 
       onChange={e => setMatzapasBody({ ...matzapasBody, credit: e.target.value })} 
-      placeholder="Укажите кредит/э" 
+      placeholder="Укажите кредит" 
      /> 
  
     </Space>

@@ -1,0 +1,15 @@
+/* Убираем прозрачность для выпадающего меню */
+.custom-popup-menu {
+  background-color: #ffffff !important; /* Непрозрачный фон */
+  opacity: 1 !important; /* Убираем прозрачность */
+}
+
+/* Фон для элементов выпадающего меню */
+.custom-popup-menu .ant-menu-item {
+  background-color: #ffd4d4 !important;
+}
+
+/* Цвет при наведении */
+.custom-popup-menu .ant-menu-item:hover {
+  background-color: #f58282 !important;
+}
