@@ -10,7 +10,7 @@ import { Select } from 'antd';
 
 const { Option } = Select; 
 
-let localId = 0;
+let localId = 1;
 
  
 
@@ -43,7 +43,13 @@ export const MatzapasBodiesCreateDialog = ({
     {id: localId, 
       materialID: matzapasBody.materialID, 
       unit: matzapasBody.unit,
-      count: matzapasBody.count, 
+      norma: matzapasBody.norma,
+      count: matzapasBody.count,
+      price: matzapasBody.price,
+      sum: matzapasBody.sum,
+      issue: matzapasBody.issue,
+      debet: matzapasBody.debet,
+      credit: matzapasBody.credit 
     } 
    onOk(record); 
    setMatzapasBody(null); 
@@ -98,16 +104,18 @@ export const MatzapasBodiesCreateDialog = ({
       <Space> 
 
  
-       <Input  
+       
+
+       <Input 
          value={matzapasBody?.norma || ''} 
-         onChange={e => setMatzapasBody({ ...matzapasBody, norma: +e.target.value })} 
-         placeholder="Укажите Норму" 
+        onChange={e => setMatzapasBody({ ...matzapasBody, norma: e.target.value })} 
+         placeholder="Укажите норму" 
        /> 
 
  
        <Input 
          value={matzapasBody?.price || ''} 
-        onChange={e => setMatzapasBody({ ...matzapasBody, price: +e.target.value })} 
+         onChange={e => setMatzapasBody({ ...matzapasBody, price: +e.target.value })} 
          placeholder="Укажите цену" 
        /> 
 

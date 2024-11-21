@@ -19,6 +19,11 @@ export const MatzapasListView = ({
             key: 'id',
         },
         {
+            title: 'Номер документа',
+            dataIndex: 'number',
+            key: 'number',
+        },
+        {
             title: 'Дата',
             dataIndex: 'date',
             render:(text)=>dayjs(text).format('DD.MM.YYYY')
@@ -100,8 +105,7 @@ export const MatzapasListView = ({
     console.log(list);
 
     const createRecordHandler = () => {
-        setCurrentRecord(null)
-        setVisible(true);
+        navigate('/create'); // Переход на страницу создания
     }
 
     const updateRecordHandler = (record) => {

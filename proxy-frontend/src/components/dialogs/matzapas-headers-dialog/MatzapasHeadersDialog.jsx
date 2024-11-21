@@ -59,7 +59,13 @@ export const MatzapasHeadersDialog = ({
    <Space direction="vertical" style={{ width: '100%' }}> 
 
  
-    <Space style={{width: '100%'}}> 
+    <Space style={{width: '100%'}}>
+
+    <Input 
+     value={matzapasHeader?.number || ''} 
+     onChange={e => setMatzapasHeader({ ...matzapasHeader, number: e.target.value })} 
+     placeholder="Укажите Номер Документа" 
+    />  
 
  
     <DatePicker  

@@ -9,8 +9,8 @@ import { Select } from 'antd';
  
 
 const { Option } = Select; 
+let localId = 1; 
 
-let localId = 0 
 
  
 
@@ -24,7 +24,7 @@ export const ProxyBodiesCreateDialog = ({
  ...props 
 
 }) => { 
- const [proxyBody, setProxyBody] = useState(null); 
+ const [proxyBody, setProxyBody] = useState(null);
 
  
  useEffect(() => { 

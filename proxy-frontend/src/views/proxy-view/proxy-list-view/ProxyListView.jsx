@@ -89,8 +89,7 @@ export const ProxyListView = ({
     console.log(list);
 
     const createRecordHandler = () => {
-        setCurrentRecord(null)
-        setVisible(true);
+        navigate('/create1');
     }
 
     const updateRecordHandler = (record) => {

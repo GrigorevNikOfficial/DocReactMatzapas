@@ -10,6 +10,10 @@ const MatzapasHeaderModel = sequelize.define(
             autoIncrement: true,
             allowNull: false,
         },
+        number: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
         date: {
             type: Sequelize.DATE,
             allowNull: false,

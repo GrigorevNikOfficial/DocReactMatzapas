@@ -22,6 +22,7 @@ class MatzapasHeaderService {
     /** обновить запись в таблице "proxyheaders" */
     async updateRecord(payload) {
         let record = await MatzapasHeaderModel.findOne({ where: { id: payload.id } });
+        record.number = payload?.number || record?.number;
         record.date = payload?.date || record?.date;
         record.directorID = payload?.directorID || record?.directorID;
         record.signatureDate = payload?.signatureDate || record?.signatureDate;

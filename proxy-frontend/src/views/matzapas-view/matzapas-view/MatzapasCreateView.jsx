@@ -63,7 +63,7 @@ export const MatzapasCreateView = ({
     dataIndex: 'debet', 
    },
    { 
-    title: 'Дебед', 
+    title: 'Кредит', 
     dataIndex: 'credit', 
    },
    { 
@@ -165,144 +165,150 @@ export const MatzapasCreateView = ({
 
  
  return ( 
-   <div style={{ padding: 16 }}> 
-    <div ref={componentRef}> 
+  <div style={{ padding: 16 }}> 
+   <div ref={componentRef}> 
 
- 
-      <Space 
-       direction={'vertical'} 
-       align={'center'} 
-       style={{ width: '100%', marginBottom: 24 }} 
-      > 
-       <h2> 
-         <label>Акт № 
-          <Input  
-            onChange={e => setMatzapasHeader({ ...matzapasHeader, id: e.target.value})} 
-            placeholder="№" 
-            style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
-          /> 
-         </label> 
-       </h2> 
-       
-      <Space 
-      >Дата 
-       <DatePicker 
-         format="DD.MM.YYYY" 
-         value={dayjs(matzapasHeader?.date, 'YYYY-MM-DD') || new Date()} 
-         onChange={date => setMatzapasHeader({ ...matzapasHeader, date: date })} 
-         style={{ width: 232}} 
-         allowClear={false} 
-       /> 
-       </Space>  
 
- 
-       <Space>Дата подписи  
-       <DatePicker 
-         format="DD.MM.YYYY" 
-         value={dayjs(matzapasHeader?.signatureDate, 'YYYY-MM-DD') || new Date()} 
-         onChange={date => setMatzapasHeader({ ...matzapasHeader, signatureDate: date })} 
-         style={{ width: 232 }} 
-         allowClear={false} 
-       /> 
-       </Space>
-
-       <Space>Дата приказа  
-       <DatePicker 
-         format="DD.MM.YYYY" 
-         value={dayjs(matzapasHeader?.orderDate, 'YYYY-MM-DD') || new Date()} 
-         onChange={date => setMatzapasHeader({ ...matzapasHeader, orderDate: date })} 
-         style={{ width: 232 }} 
-         allowClear={false} 
-       /> 
-       </Space>  
-
- 
-       <Space>Компания: <strong> 
-         <Select 
-          value={matzapasHeader?.companyID || null} 
-          onChange={value => setMatzapasHeader({ ...matzapasHeader, companyID: value })} 
-          placeholder={"Выберите компанию"} 
-          style={{ width: 425 }} 
-          > 
-          {companies.map(it => <Option 
-            value={it.id}> 
-            {it.name}
-          </Option>)} 
-         </Select> 
-         </strong></Space>
-
- 
-       <Space>Директор: <strong> 
-         <Select 
-          value={matzapasHeader?.directorID || null} 
-          onChange={value => setMatzapasHeader({ ...matzapasHeader, directorID: value })} 
-          placeholder={"Выберите директора"} 
-          style={{ width: 425 }} 
-          > 
-          {directors.map(it => <Option 
-            value={it.id}> 
-            {it.lastName} {it.firstName} {it.patronymic} 
-          </Option>)} 
-         </Select> 
-         </strong></Space> 
-      </Space>
-
+     <Space 
+      direction={'vertical'} 
+      align={'center'} 
+      style={{ width: '100%', marginBottom: 24 }} 
+     > 
       <h2> 
-         <label>Номер приказа 
-          <Input  
-            onChange={e => setMatzapasHeader({ ...matzapasHeader, orderNumber: e})} 
-            placeholder="№" 
-            style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
-          /> 
-         </label> 
-       </h2>
- 
-      <Table dataSource={list} columns={columns} /> 
-    </div> 
+        <label>Акт № 
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, number: +e.target.value})} 
+           placeholder="№" 
+           style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
+         /> 
+        </label> 
+      </h2> 
+      
+     <Space 
+     >Дата 
+      <DatePicker 
+        format="DD.MM.YYYY" 
+        value={dayjs(matzapasHeader?.date, 'YYYY-MM-DD') || new Date()} 
+        onChange={date1 => setMatzapasHeader({ ...matzapasHeader, date: date1 })} 
+        style={{ width: 232}} 
+        allowClear={false} 
+      /> 
+      </Space>  
 
- 
-    <Space 
-      style={{ width: '100%', display: "flex", justifyContent: "space-between" }} 
-    > 
-      <Button onClick={createRecordHandler}> 
-       Добавить 
-      </Button> 
-       
-      <Space style={{ display: 'flex', gap: 10 }}> 
-       <Button onClick={event => navigate('/')} > 
-         Отменить 
-       </Button> 
 
- 
-       <Button 
-         onClick={saveRecordHandler} > 
-         Сохранить 
-       </Button> 
-      </Space> 
+      <Space>Дата подписи  
+      <DatePicker 
+        format="DD.MM.YYYY" 
+        value={dayjs(matzapasHeader?.signatureDate, 'YYYY-MM-DD') || new Date()} 
+        onChange={date => setMatzapasHeader({ ...matzapasHeader, signatureDate: date })} 
+        style={{ width: 232 }} 
+        allowClear={false} 
+      /> 
+      </Space>
+      
+      <Space>Компания: <strong> 
+        <Select 
+         value={matzapasHeader?.copmanyID || null} 
+         onChange={value => setMatzapasHeader({ ...matzapasHeader, copmanyID: value })} 
+         placeholder={"Выберите компанию"} 
+         style={{ width: 425 }} 
+        > 
+        {companies.map(it => <Option 
+         value={it.id}> 
+         {it.name} 
+        </Option>)} 
+        </Select> 
+      </strong></Space> 
 
- 
-    </Space> 
 
- 
-    <MatzapasBodiesCreateDialog 
-      visible={visible} 
-      onOk={(record) => { 
-       currentRecord 
-         ? setList(list.map(it => it.id === currentRecord.id 
-          ? { ...record } 
-          : it)) 
-         : setList([...list, record]); 
+      <Space>Директор: <strong> 
+        <Select 
+         value={matzapasHeader?.directorID || null} 
+         onChange={value => setMatzapasHeader({ ...matzapasHeader, directorID: value })} 
+         placeholder={"Выберите директора"} 
+         style={{ width: 425 }} 
+         > 
+         {directors.map(it => <Option 
+           value={it.id}> 
+           {it.lastName} {it.firstName} {it.patronymic} 
+         </Option>)} 
+        </Select> 
+        </strong></Space> 
+     </Space>
+     
+      <Space>Комиссия 
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, commission: e.target.value})} 
+           placeholder="Выберите комиссию" 
+           style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
+         /> 
+        </Space>
+        
+        <Space>Номер приказа 
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, orderNumber: e.target.value})} 
+           placeholder="№"
+           style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
+         /> 
+        </Space>
 
- 
-       setCurrentRecord(null); 
-       setVisible(false); 
-      }} 
-      onCancel={() => setVisible(false)} 
-      currentRecord={currentRecord} 
-      materials={materials} 
-      matzapasHeaderID={id} 
-    /> 
+        <Space>Дата приказа
+      <DatePicker 
+        format="DD.MM.YYYY" 
+        value={dayjs(matzapasHeader?.orderDate, 'YYYY-MM-DD') || new Date()} 
+        onChange={date => setMatzapasHeader({ ...matzapasHeader, orderDate: date })} 
+        style={{ width: 232 }} 
+        allowClear={false} 
+      /> 
+      </Space>  
+
+
+     <Table dataSource={list} columns={columns} /> 
    </div> 
- ) 
+
+
+   <Space 
+     style={{ width: '100%', display: "flex", justifyContent: "space-between" }} 
+   > 
+     <Button onClick={createRecordHandler}> 
+      Добавить 
+     </Button> 
+      
+     <Space style={{ display: 'flex', gap: 10 }}> 
+      <Button onClick={event => navigate('/')} > 
+        Отменить 
+      </Button> 
+
+
+      <Button 
+        onClick={saveRecordHandler} > 
+        Сохранить 
+      </Button> 
+     </Space> 
+
+
+   </Space> 
+
+
+   <MatzapasBodiesCreateDialog 
+     visible={visible} 
+     onOk={(record) => { 
+      currentRecord 
+        ? setList(list.map(it => it.id === currentRecord.id 
+         ? { ...record } 
+         : it)) 
+        : setList([...list, record]); 
+
+
+      setCurrentRecord(null); 
+      setVisible(false); 
+     }} 
+     onCancel={() => setVisible(false)} 
+     currentRecord={currentRecord} 
+     materials={materials} 
+     matzapasHeaderId={id} 
+   /> 
+  </div> 
+) 
 
 } 

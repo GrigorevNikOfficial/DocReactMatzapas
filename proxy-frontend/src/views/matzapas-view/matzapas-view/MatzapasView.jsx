@@ -157,7 +157,7 @@ export const MatzapasView = ({
      align={'center'} 
      style={{ width: '100%', marginBottom: 24 }} 
     > 
-     <h2>Акт № <strong>{matzapas?.id}</strong></h2> 
+     <h2>Акт № <strong>{matzapas?.number}</strong></h2> 
      
      <Space>Дата 
      <DatePicker 
@@ -251,7 +251,7 @@ export const MatzapasView = ({
     />
       </Space>
 
-      <Space>Дата подписи  
+      <Space>Дата приказа  
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(matzapas?.orderDate, 'YYYY-MM-DD') || null} 
