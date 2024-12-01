@@ -30,6 +30,9 @@ class MatzapasHeaderService {
         record.commission = payload?.commission || record?.commission;
         record.orderDate = payload?.orderDate || record?.orderDate;
         record.orderNumber = payload?.orderNumber || record?.orderNumber;
+        record.responseP = payload?.responseP || record?.responseP;
+        record.structuralUnit = payload?.structuralUnit || record?.structuralUnit;
+        record.commissionM = payload?.commissionM || record?.commissionM;
         return await record.save();
     }
 

@@ -19,46 +19,60 @@ export const MatzapasListView = ({
             key: 'id',
         },
         {
-            title: 'Номер документа',
+            title: 'Номер акта',
             dataIndex: 'number',
             key: 'number',
         },
         {
-            title: 'Дата',
+            title: 'Дата акта',
             dataIndex: 'date',
             render:(text)=>dayjs(text).format('DD.MM.YYYY')
         },
         {
-            title: 'Директор',
+            title: 'Руководитель',
             dataIndex: 'directorID',
             render: (text, record) => directors.find(it => it.id === record.directorID)?.lastName,
         },
         {
-            title: 'Дата подписи',
+            title: 'Дата подписи руководителя',
             dataIndex: 'signatureDate',
             render:(text)=>dayjs(text).format('DD.MM.YYYY')
         },
         {
-            title: 'Организация',
+            title: 'Учреждение',
             dataIndex: 'copmanyID',
             render: (text, record) => companies.find(it => it.id === record.copmanyID)?.name,
         },
         {
-            title: 'Комиссия',
+            title: 'Комиссия в составе',
             dataIndex: 'commission',
             key: 'commission',
         },
         {
-            title: 'Дата приказа',
+            title: 'Дата приказа (распоряжения)',
             dataIndex: 'orderDate',
             render:(text)=>dayjs(text).format('DD.MM.YYYY')
         },
         {
-            title: 'Номер приказа',
+            title: 'Номер назначени (распоряжения) комиссии',
             dataIndex: 'orderNumber',
             key: 'orderNumber',
         },
-        
+        {
+            title: 'Ответственное лицо',
+            dataIndex: 'responseP',
+            key: 'responseP',
+        },
+        {
+            title: 'Структурное подразделение',
+            dataIndex: 'structuralUnit',
+            key: 'structuralUnit',
+        },
+        {
+            title: 'Члены комиссии',
+            dataIndex: 'commissionM',
+            key: 'commissionM',
+        },
 
         {
             title: 'Действия',

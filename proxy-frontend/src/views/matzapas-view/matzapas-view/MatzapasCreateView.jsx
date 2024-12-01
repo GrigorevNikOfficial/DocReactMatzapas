@@ -30,32 +30,32 @@ export const MatzapasCreateView = ({
     key: 'id', 
    }, 
    { 
-    title: 'Наименование', 
+    title: 'Наименование материала', 
     key: 'title', 
     render: (text, record) => materials.find(it => it.id === record.materialID)?.title, 
    }, 
    { 
-    title: 'ед. изм.', 
+    title: 'Единица измерения', 
     dataIndex: 'unit', 
    },
    { 
-    title: 'Норма', 
+    title: 'Норма расхода', 
     dataIndex: 'norma', 
    }, 
    { 
-    title: 'Количество', 
+    title: 'Количество расхода', 
     dataIndex: 'count', 
    },
    { 
-    title: 'Цена', 
+    title: 'Цена, руб.', 
     dataIndex: 'price', 
    }, 
    { 
-    title: 'Сумма', 
+    title: 'Сумма, руб.', 
     dataIndex: 'sum', 
    },
    { 
-    title: 'Причина', 
+    title: 'Направление расходования', 
     dataIndex: 'issue', 
    },
    { 
@@ -185,7 +185,7 @@ export const MatzapasCreateView = ({
       </h2> 
       
      <Space 
-     >Дата 
+     >Дата акта:
       <DatePicker 
         format="DD.MM.YYYY" 
         value={dayjs(matzapasHeader?.date, 'YYYY-MM-DD') || new Date()} 
@@ -196,7 +196,7 @@ export const MatzapasCreateView = ({
       </Space>  
 
 
-      <Space>Дата подписи  
+      <Space>Дата подписи руководителя:
       <DatePicker 
         format="DD.MM.YYYY" 
         value={dayjs(matzapasHeader?.signatureDate, 'YYYY-MM-DD') || new Date()} 
@@ -206,7 +206,7 @@ export const MatzapasCreateView = ({
       /> 
       </Space>
       
-      <Space>Компания: <strong> 
+      <Space>Учреждение:
         <Select 
          value={matzapasHeader?.copmanyID || null} 
          onChange={value => setMatzapasHeader({ ...matzapasHeader, copmanyID: value })} 
@@ -218,10 +218,10 @@ export const MatzapasCreateView = ({
          {it.name} 
         </Option>)} 
         </Select> 
-      </strong></Space> 
+      </Space> 
 
 
-      <Space>Директор: <strong> 
+      <Space>Директор:
         <Select 
          value={matzapasHeader?.directorID || null} 
          onChange={value => setMatzapasHeader({ ...matzapasHeader, directorID: value })} 
@@ -233,22 +233,22 @@ export const MatzapasCreateView = ({
            {it.lastName} {it.firstName} {it.patronymic} 
          </Option>)} 
         </Select> 
-        </strong></Space> 
-     </Space>
+        </Space> 
      
-      <Space>Комиссия 
+     
+      <Space>Комиссия в составе:
          <Input  
            onChange={e => setMatzapasHeader({ ...matzapasHeader, commission: e.target.value})} 
            placeholder="Выберите комиссию" 
-           style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
+           style={{width: 425}} 
          /> 
         </Space>
         
-        <Space>Номер приказа 
+        <Space>Номер назначени (распоряжения) комиссии: 
          <Input  
            onChange={e => setMatzapasHeader({ ...matzapasHeader, orderNumber: e.target.value})} 
            placeholder="№"
-           style={{ width: "65px", fontWeight: "bold", fontSize: "14pt", marginLeft: 10 }} 
+           style={{ width: "65px", marginLeft: 10 }} 
          /> 
         </Space>
 
@@ -260,7 +260,30 @@ export const MatzapasCreateView = ({
         style={{ width: 232 }} 
         allowClear={false} 
       /> 
-      </Space>  
+      </Space>
+
+      <Space>Ответственное лицо: 
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, responseP: e.target.value})} 
+           placeholder="Введите значение"
+           style={{ marginLeft: 10 }} 
+         /> 
+        </Space>
+        <Space>Структурное подразделение: 
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, structuralUnit: e.target.value})} 
+           placeholder="Введите значение"
+           style={{ marginLeft: 10 }} 
+         /> 
+        </Space>
+        <Space>Состав комиссии
+         <Input  
+           onChange={e => setMatzapasHeader({ ...matzapasHeader, commissionM: e.target.value})} 
+           placeholder="Введите значение"
+           style={{ marginLeft: 10 }} 
+         /> 
+        </Space>
+      </Space> 
 
 
      <Table dataSource={list} columns={columns} /> 

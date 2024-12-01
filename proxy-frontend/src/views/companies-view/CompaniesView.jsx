@@ -32,7 +32,7 @@ export const CompaniesView = ({
             key: 'kpp',
         },
         {
-            title: 'ОКПФ',
+            title: 'ОКПО',
             dataIndex: 'okpo',
             key: 'okpo',
         },

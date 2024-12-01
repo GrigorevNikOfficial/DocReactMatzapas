@@ -30,32 +30,32 @@ export const MatzapasView = ({
     key: 'id', 
    }, 
    { 
-    title: 'Наименование', 
+    title: 'Наименовани материала', 
     key: 'title', 
     render: (text, record) => materials.find(it => it.id === record.materialID)?.title, 
    }, 
    { 
-    title: 'ед. изм.', 
+    title: 'Единица измерения', 
     dataIndex: 'unit', 
    },
    { 
-    title: 'Норма', 
+    title: 'Норма расхода', 
     dataIndex: 'norma', 
    }, 
    { 
-    title: 'Количество', 
+    title: 'Количество расхода', 
     dataIndex: 'count', 
    },
    { 
-    title: 'Цена', 
+    title: 'Цена, руб.', 
     dataIndex: 'price', 
    }, 
    { 
-    title: 'Сумма', 
+    title: 'Сумма, руб.', 
     dataIndex: 'sum', 
    },
    { 
-    title: 'Причина', 
+    title: 'Направление расходования', 
     dataIndex: 'issue', 
    },
    { 
@@ -159,7 +159,7 @@ export const MatzapasView = ({
     > 
      <h2>Акт № <strong>{matzapas?.number}</strong></h2> 
      
-     <Space>Дата 
+     <Space>Дата акта: 
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(matzapas?.date, 'YYYY-MM-DD') || null} 
@@ -174,7 +174,7 @@ export const MatzapasView = ({
      /> 
 </Space>  
 
-<Space>Дата подписи  
+<Space>Дата подписи руководителя:
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(matzapas?.signatureDate, 'YYYY-MM-DD') || null} 
@@ -190,7 +190,7 @@ export const MatzapasView = ({
 </Space>
 
  
-     <Space>Компания: <strong> 
+     <Space>Учреждение: <strong> 
       <Select 
        value={matzapas?.copmanyID || null} 
        onChange={value => setMatzapas({ ...matzapas, copmanyID: value },MatzapasHeadersService.updateRecord({ 
@@ -208,7 +208,7 @@ export const MatzapasView = ({
      </strong></Space> 
 
  
-     <Space>Директор: <strong> 
+     <Space>Руководитель: <strong> 
      <Select 
        value={matzapas?.directorID || null} 
        onChange={value => setMatzapas({ ...matzapas, directorID: value },MatzapasHeadersService.updateRecord({ 
@@ -225,8 +225,8 @@ export const MatzapasView = ({
       </Select> 
       </strong></Space>
 
-      <Space>Комиссия: 
-    <Input 
+      <Space>Комиссия в составе: 
+        <Input 
         value={matzapas?.commission || ''} 
         onChange={e => {
             const updatedMatzapas = { ...matzapas, commission: e.target.value };
@@ -235,11 +235,11 @@ export const MatzapasView = ({
         }} 
         placeholder="Введите значение" 
         style={{ width: 425 }} 
-    />
+        />
       </Space>
 
-      <Space>Номер приказа: 
-    <Input 
+      <Space>Номер назначени (распоряжения) комиссии: 
+        <Input 
         value={matzapas?.orderNumber || ''} 
         onChange={e => {
             const updatedMatzapas = { ...matzapas, orderNumber: e.target.value };
@@ -248,10 +248,10 @@ export const MatzapasView = ({
         }} 
         placeholder="Введите значение" 
         style={{ width: 425 }} 
-    />
+        />
       </Space>
 
-      <Space>Дата приказа  
+      <Space>Дата приказа (распоряжения):
      <DatePicker 
       format="DD.MM.YYYY" 
       value={dayjs(matzapas?.orderDate, 'YYYY-MM-DD') || null} 
@@ -264,7 +264,48 @@ export const MatzapasView = ({
       style={{ width: 232 }} 
       allowClear={false} 
      /> 
-</Space>
+    </Space>
+
+    <Space>Ответственное лицо: 
+        <Input 
+        value={matzapas?.responseP || ''} 
+        onChange={e => {
+            const updatedMatzapas = { ...matzapas, responseP: e.target.value };
+            setMatzapas(updatedMatzapas);
+            MatzapasHeadersService.updateRecord(updatedMatzapas);
+        }} 
+        placeholder="Введите значение" 
+        style={{ width: 425 }} 
+        />
+      </Space>
+
+      <Space>Структурное подразделение: 
+        <Input 
+        value={matzapas?.structuralUnit || ''} 
+        onChange={e => {
+            const updatedMatzapas = { ...matzapas, structuralUnit: e.target.value };
+            setMatzapas(updatedMatzapas);
+            MatzapasHeadersService.updateRecord(updatedMatzapas);
+        }} 
+        placeholder="Введите значение" 
+        style={{ width: 365 }} 
+        />
+      </Space>
+
+      <Space>Члены комиссии: 
+        <Input 
+        value={matzapas?.commissionM || ''} 
+        onChange={e => {
+            const updatedMatzapas = { ...matzapas, commissionM: e.target.value };
+            setMatzapas(updatedMatzapas);
+            MatzapasHeadersService.updateRecord(updatedMatzapas);
+        }} 
+        placeholder="Введите значение" 
+        style={{ width: 425 }} 
+        />
+      </Space>
+
+    
 
     </Space> 
 

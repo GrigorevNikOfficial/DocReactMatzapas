@@ -44,6 +44,18 @@ const MatzapasHeaderModel = sequelize.define(
             type: Sequelize.INTEGER,
             allowNull: false
         },
+        responseP: {
+            type: Sequelize.STRING(255),
+            allowNull: false
+        },
+        structuralUnit: {
+            type: Sequelize.STRING(255),
+            allowNull: false
+        },
+        commissionM: {
+            type: Sequelize.STRING(255),
+            allowNull: false
+        },
     },
     {
         timestamps: false,
