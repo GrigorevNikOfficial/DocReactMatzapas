@@ -151,13 +151,19 @@ export const MatzapasView = ({
   <div style={{ padding: 16 }}> 
    <div ref={componentRef}> 
 
- 
+   <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+  <h2 style={{ width: '232px' }}>
+    Утверждена - Приказом Минфина России от 30.03.2015 N 52н
+  </h2>
+</div>
     <Space 
      direction={'vertical'} 
      align={'center'} 
      style={{ width: '100%', marginBottom: 24 }} 
     > 
-     <h2>Акт № <strong>{matzapas?.number}</strong></h2> 
+     
+     <h2>Акт № <strong>{matzapas?.number}</strong></h2>
+     
      
      <Space>Дата акта: 
      <DatePicker 
