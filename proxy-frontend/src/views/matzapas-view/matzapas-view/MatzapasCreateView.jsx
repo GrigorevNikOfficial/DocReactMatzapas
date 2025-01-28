@@ -138,6 +138,9 @@ export const MatzapasCreateView = ({
  } 
  const deleteRecordHandler = async (recordId) => { 
    setList(list.filter(it => it.id !== recordId)); 
+ }
+ const handleMaterialCreate = (newMaterial) => {
+  setMaterials((prevMaterials) => [...prevMaterials, newMaterial]);
  } 
 
  
@@ -329,7 +332,8 @@ export const MatzapasCreateView = ({
      onCancel={() => setVisible(false)} 
      currentRecord={currentRecord} 
      materials={materials} 
-     matzapasHeaderId={id} 
+     matzapasHeaderId={id}
+     onMaterialCreate={handleMaterialCreate} 
    /> 
   </div> 
 ) 

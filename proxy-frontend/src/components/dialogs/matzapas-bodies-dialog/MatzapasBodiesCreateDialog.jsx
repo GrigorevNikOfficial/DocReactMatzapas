@@ -1,10 +1,11 @@
-import { Input, Space } from "antd"; 
+import { Input, Space, Button } from "antd"; 
 
 import Modal from "antd/lib/modal/Modal"; 
 
 import React, { useEffect, useState } from "react"; 
 
-import { Select } from 'antd'; 
+import { Select } from 'antd';
+import MaterialService from "../../../api/services/material-service"  
 
  
 
@@ -20,20 +21,25 @@ export const MatzapasBodiesCreateDialog = ({
  onCancel, 
  currentRecord, 
  materials, 
- matzapasHeaderID, 
+ matzapasHeaderID,
+ onMaterialCreate, 
  ...props 
 
 }) => { 
- const [matzapasBody, setMatzapasBody] = useState(null); 
+ const [matzapasBody, setMatzapasBody] = useState(null);
+ const [materialsOptions, setMaterialOptions] = useState(materials);
+ const [newMaterialName, setNewMaterialName] = useState("");
+ const [loading, setLoading] = useState(false); 
 
  
- useEffect(() => { 
+ useEffect(() => {
+  setMaterialOptions(materials); 
    if (currentRecord) { 
     setMatzapasBody(currentRecord); 
    } else { 
     setMatzapasBody(null); 
    } 
- }, [currentRecord]) 
+ }, [currentRecord, materials]) 
 
  
  const onOkHandler = async () => { 
@@ -56,6 +62,26 @@ export const MatzapasBodiesCreateDialog = ({
    localId += 1; 
 }
 
+const handleAddMaterial = async () => {
+  if (newMaterialName.trim()) {
+    setLoading(true);
+    try {
+      const newMaterial = await MaterialService.createRecord({ title: newMaterialName });
+      setMaterialOptions([...materialsOptions, newMaterial]); // Обновляем локальный список продуктов
+      onMaterialCreate(newMaterial); // Передаём новый продукт в родительский компонент
+      setMatzapasBody((prev) => ({
+        ...prev,
+        materialID: newMaterial.id,
+      }));
+      setNewMaterialName("");
+    } catch (error) {
+      console.error("Ошибка при создании структурного подразделения:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+};
+
  
  return ( 
    <Modal 
@@ -67,19 +93,34 @@ export const MatzapasBodiesCreateDialog = ({
     <Space direction="vertical"> 
 
  
-      <Select 
-       value={matzapasBody?.materialID || null} 
-       onChange={value => setMatzapasBody({...matzapasBody, materialID: value})} 
-       placeholder={"Выберите продукт"} 
-       style={{ width: '100%' }} 
-      > 
-       {materials.map(it => <Option 
-         value={it.id}> 
-         {it.title} 
-       </Option>)} 
-
- 
-      </Select> 
+    <Select
+          value={matzapasBody?.materialID || null}
+          onChange={(value) => setMatzapasBody({ ...matzapasBody, materialID: value })}
+          placeholder="Выберите материал"
+          style={{ width: "100%" }}
+          dropdownRender={(menu) => (
+            <>
+              {menu}
+              <div style={{ display: "flex", padding: 8 }}>
+                <Input
+                  style={{ flex: "auto" }}
+                  value={newMaterialName}
+                  onChange={(e) => setNewMaterialName(e.target.value)}
+                  placeholder="Добавить новый материал"
+                />
+                <Button type="link" onClick={handleAddMaterial} loading={loading}>
+                  Добавить
+                </Button>
+              </div>
+            </>
+          )}
+        >
+          {materialsOptions.map((it) => (
+            <Option key={it.id} value={it.id}>
+              {it.title}
+            </Option>
+          ))}
+        </Select>
 
  
       <Space> 

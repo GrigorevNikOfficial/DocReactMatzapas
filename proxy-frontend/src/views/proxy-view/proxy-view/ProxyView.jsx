@@ -120,6 +120,9 @@ export const ProxyView = ({
  const deleteRecordHandler = async (recordId) => { 
   await ProxyBodyService.removeRecord(recordId); 
   setList(list.filter(it => it.id !== recordId)); 
+ }
+ const handleProductCreate = (newProduct) => {
+  setProducts((prevProducts) => [...prevProducts, newProduct]);
  } 
 
  
@@ -232,6 +235,7 @@ export const ProxyView = ({
     currentRecord={currentRecord} 
     products={products} 
     proxyHeaderId={id} 
+    onProductCreate={handleProductCreate}
    /> 
   </div> 
  ) 

@@ -134,6 +134,8 @@ export const MatzapasListView = ({
 
     return (
         <div style={{ padding: 16 }}>
+            <h2 >Список документов Акты: о списании материальных заказов
+        </h2>
     <Table
         dataSource={list}
         columns={columns}

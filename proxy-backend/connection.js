@@ -8,7 +8,6 @@ const sequelize = new Sequelize(
     {
         host: 'localhost', // Адрес сервера БД
         dialect: 'mysql', // Название сервера БД
-
     }
 );
 

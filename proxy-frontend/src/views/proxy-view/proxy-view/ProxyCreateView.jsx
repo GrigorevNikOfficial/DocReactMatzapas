@@ -114,7 +114,10 @@ export const ProxyCreateView = ({
  } 
  const deleteRecordHandler = async (recordId) => { 
    setList(list.filter(it => it.id !== recordId)); 
- } 
+ }
+ const handleProductCreate = (newProduct) => {
+  setProducts((prevProducts) => [...prevProducts, newProduct]);
+ }  
 
  
  const saveHeader = async () => { 
@@ -257,7 +260,8 @@ export const ProxyCreateView = ({
       onCancel={() => setVisible(false)} 
       currentRecord={currentRecord} 
       products={products} 
-      proxyHeaderId={id} 
+      proxyHeaderId={id}
+      onProductCreate={handleProductCreate} 
     /> 
    </div> 
  ) 

@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 export const ProxyListView = ({
     ...props
 }) => {
+    
     const columns = [
         {
             title: 'Код',
@@ -103,7 +104,9 @@ export const ProxyListView = ({
     }
 
     return (
+        
         <div style={{ padding: 16 }}>
+            <h2 >Список документов Доверенности:</h2>
     <Table
         dataSource={list}
         columns={columns}
